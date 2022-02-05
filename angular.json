@@ -105,6 +105,37 @@
           }
         }
       }
+    },
+    "ngx-custom-component": {
+      "projectType": "library",
+      "root": "projects/ngx-custom-component",
+      "sourceRoot": "projects/ngx-custom-component/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-custom-component/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-custom-component/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-custom-component/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-custom-component/src/test.ts",
+            "tsConfig": "projects/ngx-custom-component/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-custom-component/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "library"
