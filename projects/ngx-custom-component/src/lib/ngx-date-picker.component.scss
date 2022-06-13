@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
+.ngx-date-picker {
+  position: relative;
+}
+
+.ngx-date-picker__wrapper {
+  display: flex;
+  padding: 5px 10px;
+  border: 2px solid rgba(27,31,59,0.4);
+  border-radius: 10px;
+}
+
+.ngx-date-picker__input-wrapper {
+  display: flex;
+  width: 100%;
+
+  &.column {
+    flex-direction: column;
+  }
+
+  .ngx-date-picker__input-label {
+    margin-bottom: 4px;
+    font-size: .8156rem;
+    color: #333;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .ngx-date-picker__input {
+    width: 100%;
+    z-index: 5;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    font-family: 'Manrope', sans-serif;
+  }
+}
+
+.ngx-date-picker__icon {
+  width: 45px;
+  height: 45px;
+}
+
+.ngx-calendar {
+  position: absolute;
+  border: 1px solid #d7d7d7;
+  border-radius: 0.625rem;
+  margin-top: 5px;
+  height: 18.25rem;
+  width: 15.75rem;
+  padding: 1rem 1.125rem;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 16%);
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;
+}
+
+.ngx-calendar__month-year {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .ngx-calendar__month, .ngx-calendar__year {
+      font-weight: 700;
+      font-size: 20px;
+      font-family: 'Manrope', sans-serif;
+      text-transform: capitalize;
+    }
+
+    .ngx-calendar__year {
+      color: #526ed3;
+      cursor: pointer;
+    }
+
+    .ngx-calendar__year:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .ngx-calendar__button-left, .ngx-calendar__button-right {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .ngx-calendar__button-left:hover {
+    opacity: 0.7;
+  }
+
+  .ngx-calendar__button-right:hover {
+    opacity: 0.7;
+  }
+}
+
+.ngx-calendar__container {
+  margin-top: 15px;
+
+  &-table {
+    table-layout: fixed;
+    width: 100%;
+
+    .week {
+      color: rgba(27,31,59,0.4);
+
+      &__day {
+        text-align: center;
+        font-family: 'Manrope', sans-serif;
+      }
+    }
+  }
+
+  .days {
+    .day {
+      text-align: center;
+      padding: 7px;
+      color: #1b1f3b;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .active {
+      background-color: #526ed3;
+      color: #fff;
+      border-radius: 10px;
+    }
+
+    .day:hover {
+      background-color: #6c86e2;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .today {
+      background-color: #526ed3;
+      color: #fff;
+      border-radius: 10px;
+    }
+
+    .current-month {
+      opacity: 0.56;
+    }
+
+    .day-off {
+      color: #dd4c1e;
+      border-radius: 10px;
+    }
+  }
+}
+
+.years {
+  display: flex;
+  flex-wrap: wrap;
+  height: inherit;
+  overflow-y: scroll;
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Manrope', sans-serif;
+    border-radius: 10px;
+    width: 55px;
+    height: 50px;
+    cursor: pointer;
+  }
+
+  &__item:hover {
+    background-color: #6c86e2;
+    opacity: 0.5;
+  }
+}
+
+.years::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+.years::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(27,31,59,0.2);
+}
+
+.years::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+

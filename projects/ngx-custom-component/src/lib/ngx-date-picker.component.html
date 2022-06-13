@@ -1,0 +1,100 @@
+<div
+  class="ngx-date-picker">
+  <div
+    (click)="showCalendar = !showCalendar"
+    class="ngx-date-picker__wrapper"
+  >
+    <div
+      [ngClass]="{'column': showLabel}"
+      class="ngx-date-picker__input-wrapper"
+    >
+      <div
+        *ngIf="showLabel"
+        class="ngx-date-picker__input-label">
+        {{label}}
+      </div>
+      <input
+        [ngModel]="formattedDate"
+        class="ngx-date-picker__input"
+        readonly
+      >
+    </div>
+    <div class="ngx-date-picker__icon">
+      <svg width="100%" height="100%" viewBox="0 0 400 400">
+        <g transform="matrix(8 0 0 8 200 200)">
+          <path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgba(27,31,59,0.4); fill-rule: evenodd; opacity: 1;"  transform=" translate(-14.5, -14)" d="M 7.72917 2 C 7.44152 2 7.20833 2.23359 7.20833 2.52174 V 5.13043 H 4.08333 C 2.93274 5.13043 2 6.0648 2 7.21739 V 23.913 C 2 25.0656 2.93274 26 4.08333 26 H 24.9167 C 26.0673 26 27 25.0656 27 23.913 V 7.21739 C 27 6.0648 26.0673 5.13043 24.9167 5.13043 H 21.7917 V 2.52174 C 21.7917 2.23359 21.5585 2 21.2708 2 H 20.2292 C 19.9415 2 19.7083 2.23359 19.7083 2.52174 V 5.13043 H 9.29167 V 2.52174 C 9.29167 2.23359 9.05848 2 8.77083 2 H 7.72917 Z M 19.7083 7.21739 L 9.29167 7.21739 V 8.26087 C 9.29167 8.54902 9.05848 8.78261 8.77083 8.78261 H 7.72917 C 7.44152 8.78261 7.20833 8.54902 7.20833 8.26087 V 7.21739 H 5.125 C 4.5497 7.21739 4.08333 7.68457 4.08333 8.26087 V 10.3478 H 24.9167 V 8.26087 C 24.9167 7.68457 24.4503 7.21739 23.875 7.21739 H 21.7917 V 8.26087 C 21.7917 8.54902 21.5585 8.78261 21.2708 8.78261 H 20.2292 C 19.9415 8.78261 19.7083 8.54902 19.7083 8.26087 V 7.21739 Z M 4.08333 12.4348 H 24.9167 V 22.8696 C 24.9167 23.4459 24.4503 23.913 23.875 23.913 H 5.125 C 4.5497 23.913 4.08333 23.4459 4.08333 22.8696 V 12.4348 Z" stroke-linecap="round" />
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="ngx-calendar" *ngIf="showCalendar">
+    <div class="ngx-calendar__wrapper" *ngIf="!openChoiceYears; else yearsPage">
+      <div class="ngx-calendar__month-year">
+        <div class="ngx-calendar__button-left" (click)="previousMonth()">
+          <svg viewBox="0 0 129 129">
+            <g>
+              <path d="m88.6,121.3c0.8,0.8 1.8,1.2 2.9,1.2s2.1-0.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8,0l-54,53.9c-1.6,1.6-1.6,4.2 0,5.8l54,53.9z"/>
+            </g>
+          </svg>
+        </div>
+        <div class="ngx-calendar__month-year-wrapper">
+          <div class="ngx-calendar__month">{{month}}</div>
+          <div
+            class="ngx-calendar__year"
+            (click)="openChoiceYears = true"
+          >
+            {{activeDate.year}}
+          </div>
+        </div>
+        <div class="ngx-calendar__button-right" (click)="nextMonth()">
+          <svg viewBox="0 0 129 129">
+            <g>
+              <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="ngx-calendar__container">
+        <table class="ngx-calendar__container-table">
+          <thead>
+          <tr class="week">
+            <th
+              class="week__day"
+              *ngFor="let title of weekDays"
+            >
+              {{title}}
+            </th>
+          </tr>
+          </thead>
+          <tbody class="days">
+          <tr *ngFor="let date of dates">
+            <td
+              *ngFor="let day of date.week"
+              class="day"
+              [ngClass]="{
+              'today': day.currentDay,
+              'current-month': day.cmo !== currentMonthId,
+              'day-off': day.highlight && !day.currentDay,
+              'active': (day.dateObj.day === activeDate.day && day.dateObj.month === activeDate.month)
+              }"
+              (click)="changeDate(day)"
+            >
+              {{day.dateObj.day}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #yearsPage>
+      <div class="years">
+        <div
+          class="years__item"
+          *ngFor="let year of years"
+        >
+          {{year}}
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
